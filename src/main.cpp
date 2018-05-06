@@ -1,24 +1,21 @@
 #include <Arduino.h>
-
-// #include "uFire_EC_BLE.h"
 #include "uFire_ISE_BLE-pH.h"
 
-uFire_ISE_BLE_pH ec;
+uFire_ISE_BLE_pH ph;
 
 void setup() {
   Serial.begin(9600);
   pinMode(22, OUTPUT);
 
-  ec.startBLE();
-  Serial.println("started BLE");
+  ph.startBLE();
 }
 
 void loop() {
-  ec.measurepH();
-  ec.measureTemp();
-  Serial.println(ec.pH);
-  Serial.println(ec.tempC);
-  if (ec.connected())
+  ph.measurepH();
+  ph.measureTemp();
+  Serial.println(ph.pH);
+  Serial.println(ph.tempC);
+  if (ph.connected())
   {
     digitalWrite(22, LOW);
   }
