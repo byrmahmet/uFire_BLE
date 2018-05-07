@@ -39,12 +39,16 @@
 ISE_pH::ISE_pH()
 {
   _address = ISE_PROBE_I2C;
+
+  // sda, scl
   Wire.begin(19, 23, 100000);
 }
 
 ISE_pH::ISE_pH(uint8_t i2c_address)
 {
   _address = i2c_address;
+
+  // sda, scl
   Wire.begin(19, 23, 100000);
 }
 

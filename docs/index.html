@@ -1,67 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>uFire  BLE</title>
+  <title>uFire BLE</title>
 
-<head>
-  <meta charset="utf-8">
-  <link rel="icon" href="favicon.ico">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="bower_components/bulma/css/bulma.min.css">
-  <link rel="stylesheet" href="spinner.css">
-  <script type='text/javascript' src='bower_components/knockout/dist/knockout.js'></script>
-  <script type='text/javascript' src='app.js'></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-  <script>app.initialize();</script>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bower_components/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="spinner.css">
+    <script type='text/javascript' src='bower_components/knockout/dist/knockout.js'></script>
+    <script type='text/javascript' src='app.js'></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <script>
+      app.initialize();
 
-<body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title has-text-centered">uFire BLE</h1>
-          <section class='section '>
-              <div class='container'>
-                  <div class='card'>
-                      <header class='card-header'>
-                          <p class='card-header-title' data-bind='text: app.ko_name'></p>
-                          <a href='#' class='card-header-icon' data-bind="click: app.btn_click">
+    </script>
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title has-text-centered">uFire BLE</h1>
+        <section class='section '>
+          <div class='container'>
+            <div class='card'>
+              <header class='card-header'>
+                <p class='card-header-title' data-bind='text: app.ko_name'></p>
+                <a href='#' class='card-header-icon' data-bind="click: app.btn_click">
                             <span class="spinner spinner-slow spinner-blue" data-bind="visible: app.connected"></span>
                             <span class='icon'>
-                              <i class="fab fa-bluetooth"></i>
+                              <i class="fab fa-2x fa-bluetooth"></i>
                             </span>
                           </a>
-                      </header>
-                      <div class='card-content'>
-                          <div class='content'>
-                              <div class='card has-text-centered'>
-                                  <div class='card-content'>
-                                      <p class='title' data-bind='text: app.ko_value'></p>
-                                      <p class='subtitle' data-bind='text: app.ko_description'></p>
-                                  </div>
-                              </div>
-                              <div class='card has-text-centered'>
-                                  <div class='card-content'>
-                                      <p class='title' data-bind='text: app.ko_temp'></p>
-                                      <p class='subtitle' data-bind='text: app.ko_temp_unit'>C</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+              </header>
+              <div class='card-content'>
+                <div class='content'>
+                  <div class='card has-text-centered'>
+                    <div class='card-content'>
+                      <p class='title' data-bind='text: app.ko_value'></p>
+                      <p class='subtitle' data-bind='text: app.ko_description'></p>
+                    </div>
                   </div>
+                  <div class='card has-text-centered'>
+                    <div class='card-content'>
+                      <p class='title' data-bind='text: app.ko_temp'></p>
+                      <p class='subtitle' data-bind='text: app.ko_temp_unit'>C</p>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
         </section>
-    </div>
-    <div class="notification is-warning">
-      <ul>
-        <li>This only works in Chrome 55+</li>
-        <li>Make sure Experimental Web Platform features is Enabled by going to chrome://flags/#enable-experimental-web-platform-features and restarting the browser
-      </ul>
-    </div>
-  </section>
+      </div>
+      <div class="notification is-warning">
+        <ul>
+          <li>This only works in Chrome 55+</li>
+          <li>Make sure Experimental Web Platform features is Enabled by going to chrome://flags/#enable-experimental-web-platform-features and restarting the browser
+        </ul>
+      </div>
+    </section>
 
-<script type="text/javascript">
-    function viewModel() {}
-    ko.applyBindings(new viewModel());
-</script>
-</body>
+    <script type="text/javascript">
+      function viewModel() {}
+      ko.applyBindings(new viewModel());
+
+    </script>
+  </body>
+
 </html>

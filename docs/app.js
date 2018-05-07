@@ -9,7 +9,7 @@ var app = {
   ko_description: ko.observable('-'),
   ko_temp: ko.observable('-'),
   ko_temp_unit: ko.observable('-'),
-  ko_name: ko.observable('click to connect / disconnect ->'),
+  ko_name: ko.observable(''),
   connected: ko.observable(false),
   initialize: async function() {
 
@@ -67,7 +67,7 @@ var app = {
       device.gatt.disconnect();
       device = 0;
       app.connected(false);
-      app.ko_name('click to connect / disconnect ->');
+      app.ko_name('');
       app.ko_value('-');
       app.ko_description('-');
       app.ko_temp('-');
