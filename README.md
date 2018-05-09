@@ -17,7 +17,7 @@ An ESP32-compatible library to expose all the measurement values and configurati
 
 You will see there are characteristics that expose all the measurments and configuration registers. If you look at the characteristics, you will see that some can be read, some written, and some have notify flags. Calibration is done by writing to the appropriate characteristic. See the source for details.
 
-This project is left intentionally somewhat incomplete. There is a lot of room on the ESP32 for the additional of features functionality. The website demo is minimal and used as an easy to implement, cross-platform way to show what is possible.
+This project is left intentionally incomplete. There is a lot of room on the ESP32 for additional features and functionality. The website demo is minimal and used as an easy to implement, cross-platform way to show what is possible.
 
 #### Compiling
 This is a [PlatformIO](http://platformio.org/) project. Download and install it, import this repo, and it should download all the required tools for you.
