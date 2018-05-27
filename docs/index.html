@@ -48,6 +48,24 @@
                       <p class='subtitle' data-bind='text: app.ko_temp_unit'>C</p>
                     </div>
                   </div>
+                  <div class='card has-text-centered' data-bind="visible: app.connected">
+                    <div class='card-content'>
+                      <p class='title'>Low Ref</p>
+                      <p class='subtitle'>
+                        <input type="text" data-bind="textInput: app.ko_low_ref" />
+                        <button data-bind="click: app.calibrateLowRef">Calibrate</button>
+                      </p>
+                    </div>
+                  </div>
+                  <div class='card has-text-centered' data-bind="visible: app.connected">
+                    <div class='card-content'>
+                      <p class='title'>High Ref</p>
+                      <p class='subtitle'>
+                        <input type="text" data-bind="textInput: app.ko_high_ref" />
+                        <button data-bind="click: app.calibrateHighRef">Calibrate</button>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

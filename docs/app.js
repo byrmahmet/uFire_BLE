@@ -1,8 +1,10 @@
 var device = 0;
 ko_value = ko.observable(0);
 let decoder = new TextDecoder('utf-8');
+let encoder = new TextEncoder('utf-8');
 
 var app = {
+  service: 0,
   value: 0,
   characteristic: 0,
   ko_value: ko.observable('-'),
@@ -10,6 +12,8 @@ var app = {
   ko_temp: ko.observable('-'),
   ko_temp_unit: ko.observable('-'),
   ko_name: ko.observable(''),
+  ko_low_ref: ko.observable('4.01'),
+  ko_high_ref: ko.observable('7.01'),
   connected: ko.observable(false),
   initialize: async function() {
 
@@ -32,7 +36,7 @@ var app = {
         const server = await device.gatt.connect();
         app.connected(true);
 
-        const service = await server.getPrimaryService(serviceUuid);
+        service = await server.getPrimaryService(serviceUuid);
         characteristic = await service.getCharacteristic(characteristicUuid);
 
         value = await characteristic.readValue().then(value => {
@@ -81,5 +85,17 @@ var app = {
   temp_update: async function(event) {
     let value = event.target.value;
     app.ko_temp(decoder.decode(value));
+  },
+  calibrateHighRef: async function() {
+    let highRef = '1dadca6b-3ecc-41bd-a116-f77248975310';
+    console.log("Calibrating high ref: " + app.ko_high_ref());
+    var characteristic = await service.getCharacteristic(highRef);
+    characteristic.writeValue(encoder.encode(app.ko_high_ref()));
+  },
+  calibrateLowRef: async function() {
+    let lowRef = '1baa566e-4657-4080-a580-d236af1c6bd9';
+    console.log("Calibrating low ref: " + app.ko_low_ref());
+    var characteristic = await service.getCharacteristic(lowRef);
+    characteristic.writeValue(encoder.encode(app.ko_low_ref()));
   }
 };
