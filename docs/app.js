@@ -12,6 +12,7 @@ var app = {
   ko_temp: ko.observable('-'),
   ko_temp_unit: ko.observable('-'),
   ko_name: ko.observable(''),
+  ko_bools: ko.observableArray(),
   ko_low_ref: ko.observable('4.01'),
   ko_high_ref: ko.observable('7.01'),
   connected: ko.observable(false),
@@ -22,6 +23,8 @@ var app = {
     let serviceUuid = '4805d2d0-af9f-42c1-b950-eae78304c408';
     let characteristicUuid = 'ca0331f9-e237-4f81-b9d4-6b2facabfceb';
     let tempUuid = 'aee115cf-26f0-4096-8914-686b32f123fd';
+    let dpUuid = '374dc054-299c-44a6-8d6f-66e6dd412567';
+    let tempComp = 'eb245c07-da24-45bd-9d88-5f6e3cc76a23';
 
     if (!device) {
       try {
@@ -63,6 +66,38 @@ var app = {
 
         await characteristic.startNotifications();
         characteristic.addEventListener('characteristicvaluechanged', app.temp_update);
+
+        var init_prop_bool = async function(service, uuid) {
+          var property = {
+            value: ko.observable(''),
+            description:  ko.observable('')
+          };
+
+          var characteristic = await service.getCharacteristic(uuid);
+          var value = await characteristic.readValue().then(value => {
+            property.value(decoder.decode(value) == '1');
+          });
+
+          var descriptor = await characteristic.getDescriptor(0x2901);
+          await descriptor.readValue().then(value => {
+            property.description(decoder.decode(value));
+          });
+
+          property.value.subscribe(function(value) {
+            console.log("Property " + uuid + " changed: " + value);
+            characteristic.writeValue(encoder.encode(value ? '1' : '0'));
+          });
+
+          return property;
+        };
+
+        await init_prop_bool(service, dpUuid).then(value => {
+          app.ko_bools.push(value);
+        });
+
+        await init_prop_bool(service, tempComp).then(value => {
+          app.ko_bools.push(value);
+        });
 
       } catch (error) {
         console.log('Argh! ' + error);

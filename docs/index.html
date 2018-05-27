@@ -66,6 +66,14 @@
                       </p>
                     </div>
                   </div>
+                  <div data-bind="foreach: app.ko_bools">
+                    <div class='card has-text-centered'>
+                      <div class='card-content'>
+                        <p class='title' data-bind='text: description'></p>
+                        <p class='subtitle'><input type="checkbox" data-bind="checked: value" /></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
