@@ -38,15 +38,13 @@ const float EC_Salinity::tempCoefSalinity = 0.021;
 EC_Salinity::EC_Salinity(uint8_t i2c_address)
 {
   _address = i2c_address;
-
-  Wire.begin(19, 23, 100000);
+  Wire.begin(19, 23, 10000);
 }
 
 EC_Salinity::EC_Salinity()
 {
   _address = EC_SALINITY;
-
-  Wire.begin(19, 23, 100000);
+  Wire.begin(19, 23, 10000);
 }
 
 /*!

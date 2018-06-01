@@ -1,11 +1,9 @@
 var device = 0;
-ko_value = ko.observable(0);
 let decoder = new TextDecoder('utf-8');
 let encoder = new TextEncoder('utf-8');
 
 var app = {
   service: 0,
-  value: 0,
   characteristic: 0,
   ko_value: ko.observable('-'),
   ko_description: ko.observable('-'),
@@ -13,12 +11,9 @@ var app = {
   ko_temp_unit: ko.observable('-'),
   ko_name: ko.observable(''),
   ko_bools: ko.observableArray(),
-  ko_low_ref: ko.observable('4.01'),
-  ko_high_ref: ko.observable('7.01'),
+  ko_low_ref: ko.observable(''),
+  ko_high_ref: ko.observable(''),
   connected: ko.observable(false),
-  initialize: async function() {
-
-  },
   btn_click: async function() {
     let serviceUuid = '4805d2d0-af9f-42c1-b950-eae78304c408';
     let characteristicUuid = 'ca0331f9-e237-4f81-b9d4-6b2facabfceb';
@@ -70,7 +65,7 @@ var app = {
         var init_prop_bool = async function(service, uuid) {
           var property = {
             value: ko.observable(''),
-            description:  ko.observable('')
+            description: ko.observable('')
           };
 
           var characteristic = await service.getCharacteristic(uuid);
@@ -111,6 +106,7 @@ var app = {
       app.ko_description('-');
       app.ko_temp('-');
       app.ko_temp_unit('-');
+      app.ko_bools([]);
     }
   },
   value_update: async function(event) {
