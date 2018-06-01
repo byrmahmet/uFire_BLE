@@ -12,15 +12,20 @@ uFire_ISE_BLE_pH ufire_obj;
 // uFire_EC_BLE ufire_obj;
 
 void setup() {
+  Serial.begin(9600);
   ufire_obj.startBLE();
 }
 
 void loop() {
   // pH
   ufire_obj.measurepH();
+  Serial.print("pH: "); Serial.println(ufire_obj.pH);
 
   // mS
   // ufire_obj.measureEC();
+  // Serial.print("mS: "); Serial.println(ufire_obj.mS);
 
   ufire_obj.measureTemp();
+  Serial.print(" C: "); Serial.println(ufire_obj.tempC);
+  Serial.println();
 }

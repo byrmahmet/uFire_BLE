@@ -2,16 +2,6 @@
 
 uFire_ISE_BLE_pH::uFire_ISE_BLE_pH() {}
 
-bool uFire_ISE_BLE_pH::connected() {
-  if (pServer->getConnectedCount() == 0)
-  {
-    return false;
-  } else
-  {
-    return true;
-  }
-}
-
 void uFire_ISE_BLE_pH::startBLE() {
   // setup the server
   BLEDevice::init("uFire pH");

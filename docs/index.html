@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>uFire BLE</title>
 
   <head>
     <meta charset="utf-8">
@@ -12,10 +11,7 @@
     <script type='text/javascript' src='bower_components/knockout/dist/knockout.js'></script>
     <script type='text/javascript' src='app.js'></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <script>
-      app.initialize();
-
-    </script>
+    <title>uFire BLE</title>
   </head>
 
   <body>
@@ -28,11 +24,11 @@
               <header class='card-header'>
                 <p class='card-header-title' data-bind='text: app.ko_name'></p>
                 <a href='#' class='card-header-icon' data-bind="click: app.btn_click">
-                            <span class="spinner spinner-slow spinner-blue" data-bind="visible: app.connected"></span>
-                            <span class='icon'>
-                              <i class="fab fa-2x fa-bluetooth"></i>
-                            </span>
-                          </a>
+                    <span class="spinner spinner-slow spinner-blue" data-bind="visible: app.connected"></span>
+                    <span class='icon'>
+                      <i class="fab fa-2x fa-bluetooth"></i>
+                    </span>
+                </a>
               </header>
               <div class='card-content'>
                 <div class='content'>
@@ -48,12 +44,45 @@
                       <p class='subtitle' data-bind='text: app.ko_temp_unit'>C</p>
                     </div>
                   </div>
+                  <div class='card has-text-centered' data-bind="visible: app.connected">
+                    <div class='card-content'>
+                      <p class='subtitle'>Calibration</p>
+                      <p>
+                        <p>
+                          <input class="input" placeholder="Low Reference" type="text" data-bind="textInput: app.ko_low_ref" />
+                          <button class="button" data-bind="click: app.calibrateLowRef">Calibrate</button>
+                        </p>
+                        <p>
+                          <input class="input" placeholder="High Reference" type="text" data-bind="textInput: app.ko_high_ref" />
+                          <button class="button" data-bind="click: app.calibrateHighRef">Calibrate</button>
+                        </p>
+                        <div data-bind="foreach: app.ko_bools">
+                          <p>
+                            <input class="checkbox" type="checkbox" data-bind="checked: value" />
+                            <label class="checkbox" data-bind='text: description'></label>
+                          </p>
+                        </div>
+                      </p>
+                      <button class='button' data-bind="click: app.config_alert">
+                          <span class='icon'>
+                            <i class="fas fa-question"></i>
+                          </span>
+                      </button>
+                    </div>
+                    <!-- ^ card content -->
+                  </div>
+                  <!-- ^ card -->
                 </div>
+                <!--  ^content -->
               </div>
+              <!-- ^ card-content -->
             </div>
+            <!-- ^ card -->
           </div>
+          <!-- ^ container -->
         </section>
       </div>
+      <!-- ^ container -->
       <div class="notification is-warning">
         <ul>
           <li>This only works in Chrome 55+</li>

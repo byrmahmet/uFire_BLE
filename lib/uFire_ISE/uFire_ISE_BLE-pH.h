@@ -35,6 +35,7 @@ public:
   void onDisconnect(BLEServer *pServer) {
     Serial.println("disconnected");
     connected = false;
+    ESP.restart();
   }
 };
 
@@ -153,7 +154,6 @@ class versionCallback : public BLECharacteristicCallbacks, ISE_pH {
 class uFire_ISE_BLE_pH : public ISE_pH {
 public:
 
-  bool connected();
   uFire_ISE_BLE_pH();
   void startBLE();
   void measurepH();
