@@ -128,8 +128,5 @@ var app = {
     console.log("Calibrating low ref: " + app.ko_low_ref());
     var characteristic = await service.getCharacteristic(lowRef);
     characteristic.writeValue(encoder.encode(app.ko_low_ref()));
-  },
-  config_alert: async function() {
-    alert("Enter the low and high reference calibration solutions (eg. 4.0 for low pH, 7.0 for high pH). \nCalibrate one at a time, waiting for the readings to stabilize before clicking 'Calibrate'.");
   }
 };
